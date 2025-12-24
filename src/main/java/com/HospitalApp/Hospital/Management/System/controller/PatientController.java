@@ -1,0 +1,35 @@
+package com.HospitalApp.Hospital.Management.System.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.HospitalApp.Hospital.Management.System.entity.Patient;
+import com.HospitalApp.Hospital.Management.System.repository.PatientRepository;
+
+@RestController
+@RequestMapping("/api/v1")
+public class PatientController {
+
+	private PatientRepository patientRepository;
+
+	public PatientController(PatientRepository patientRepository) {
+		super();
+		this.patientRepository = patientRepository;
+	}
+	
+	@PostMapping("/insert")
+	public Patient createPatient(@RequestBody Patient patient) {
+		
+		return patientRepository.save(patient);
+	}
+	
+	@GetMapping("/msg")
+	public String showMessage() {
+		
+		return "index";
+	}
+}
