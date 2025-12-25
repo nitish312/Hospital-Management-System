@@ -1,5 +1,7 @@
 package com.HospitalApp.Hospital.Management.System.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,9 +29,8 @@ public class PatientController {
 		return patientRepository.save(patient);
 	}
 	
-	@GetMapping("/msg")
-	public String showMessage() {
-		
-		return "index";
+	@GetMapping
+	public List<Patient> getAllPatients(){
+		return patientRepository.findAll();
 	}
 }
